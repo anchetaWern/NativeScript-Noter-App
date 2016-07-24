@@ -1,0 +1,35 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+	<Page.actionBar>
+		<ActionBar title="{{ app_title }}">
+			<ActionBar.actionItems>
+        <ActionItem tap="newNote" ios.position="right" android.position="actionBar">
+          <ActionItem.actionView>
+              <StackLayout orientation="horizontal">
+                <Label text="New Item" color="#fff" cssClass="header-item" />
+              </StackLayout>
+          </ActionItem.actionView>
+        </ActionItem>
+			</ActionBar.actionItems>
+		</ActionBar>
+	</Page.actionBar>
+
+  <StackLayout>
+    <StackLayout id="form" cssClass="form-container" style.backgroundColor="white">
+      <TextView text="{{ item_title }}" hint="Title" />
+      <Button text="Attach Image" cssClass="link label" tap="openCamera" />
+      <Image src="{{ attachment_img }}" id="attachment_img" cssClass="image" visibility="{{ attachment_img ? 'visible' : 'collapsed' }}" />
+      <Button text="Save Note" tap="saveNote" cssClass="primary-button" />
+    </StackLayout>
+          
+    <ListView items="{{ notes }}" id="list" visibility="{{ showForm ? 'collapsed' : 'visible' }}">
+      <ListView.itemTemplate>
+        <GridLayout columns="*,*" rows="auto,auto" cssClass="item">
+          <Label text="{{ title }}" textWrap="true" row="0" col="0" />
+          <Image src="{{ photo }}" horizontalAlignment="center" verticalAlignment="center" cssClass="image" row="1" col="0" visibility="{{ photo ? 'visible' : 'collapsed' }}" />
+        
+          <Button text="delete" index="{{ index }}" cssClass="delete-button" tap="deleteNote" row="0" col="1" horizontalAlignment="right" loaded="btnLoaded" />
+        </GridLayout>
+      </ListView.itemTemplate>
+    </ListView>
+  </StackLayout>
+</Page>
