@@ -16,8 +16,6 @@ var appSettings = require("application-settings");
 
 var fs = require("file-system");
 
-var imageContainer;
-
 var page;
 
 var notesArr = [];
@@ -27,7 +25,7 @@ var current_index = -1;
 exports.pageLoaded = function(args) {
     page = args.object;
     pageData.set('showForm', true);
-    
+
     var new_note_title = appSettings.getString('new_note_title');
     var notes = appSettings.getString('notes');
   
@@ -56,14 +54,14 @@ exports.pageLoaded = function(args) {
     }
 
     notesArr = notes;
-
-    for(var x = 0; x < notes.length; x++){
-      current_index += 1;
-      pageArray.push(notes[x]);
+    if(!pageArray.length){
+      for(var x = 0; x < notes.length; x++){
+        current_index += 1;
+        pageArray.push(notes[x]);
+      }
     }
 
     pageData.set('item_title', new_note_title);
-    imageContainer = view.getViewById(page, 'attachment_img');
     args.object.bindingContext = pageData;
 
     view.getViewById(page, 'form').animate({
@@ -97,7 +95,7 @@ exports.newNote = function() {
 exports.btnLoaded = function (args) {
   var btn = args.object;
   btn.android.setFocusable(false);
-};
+}
 
 
 exports.saveNote = function() {

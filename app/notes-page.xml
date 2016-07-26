@@ -14,7 +14,7 @@
 	</Page.actionBar>
 
   <StackLayout>
-    <StackLayout id="form" cssClass="form-container" style.backgroundColor="white">
+    <StackLayout id="form" cssClass="form-container">
       <TextView text="{{ item_title }}" hint="Title" />
       <Button text="Attach Image" cssClass="link label" tap="openCamera" />
       <Image src="{{ attachment_img }}" id="attachment_img" cssClass="image" visibility="{{ attachment_img ? 'visible' : 'collapsed' }}" />
